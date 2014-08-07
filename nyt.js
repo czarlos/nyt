@@ -1,9 +1,9 @@
 var querystring = require('querystring');
 var http = require('http');
 
-var nyt = function(key) {
+function nyt (key) {
 
-	var request = function (path, data, callback, args) {
+	this.request = function (path, data, callback, args) {
 		var options = {
 			hostname: 'www.api.nytimes.com/',
 			path: path
@@ -39,17 +39,17 @@ var nyt = function(key) {
 				callback(err);
 			});
 		});
-		console.log(data);
+		
 		req.end(data);
 	}
 
-	var get = function (api_path, callback, args) {
+	this.get = function (api_path, callback, args) {
 		var path = '/svc/' + api_path + '/?' + querystring.stringify(args);
 		console.log(path);
 		this.request(path, undefined, callback, args);
 	}
 
-	var article = function (args, callback) {
+	this.article = function (args, callback) {
 		var api_path = 'svc/search/v2/articlesearch';
 		if (!callback) {
 			callback = args;
