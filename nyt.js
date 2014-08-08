@@ -15,15 +15,9 @@ function nyt (key) {
 				buffer += chunk;
 			});
 			res.on('end', function() {
-				try {
-					var json = JSON.parse(buffer);
-				} catch (err) {
-					return callback(err);
-				}
-				callback(null, json);
-				
+				callback(buffer);
 				//var response_json = JSON.parse(buffer);
-				//console.log("Got response: ", response_json);
+				//console.log(buffer);
 			});
 		});
 
@@ -36,7 +30,7 @@ function nyt (key) {
 
 	this.get = function (api_path, callback, args) {
 		var path = api_path + '?' + querystring.stringify(args) + '&' + 'api-key=' + key;
-		console.log(path);
+		//console.log(path);
 		this.request(path, undefined, callback, args);
 	}
 
