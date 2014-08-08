@@ -5,17 +5,15 @@ function nyt (key) {
 
 	this.request = function (path, data, callback, args) {
 		var options = {
-			hostname: 'www.api.nytimes.com/',
+			hostname: 'api.nytimes.com',
 			path: path
 		}
-
 		var req = http.request(options, function(res) {
 			res.setEncoding('utf8');
 			var buffer = '';
 			res.on('data', function(chunk) {
 				buffer += chunk;
 			});
-
 			res.on('end', function() {
 				try {
 					var json = JSON.parse(buffer);
@@ -23,6 +21,9 @@ function nyt (key) {
 					return callback(err);
 				}
 				callback(null, json);
+				
+				//var response_json = JSON.parse(buffer);
+				//console.log("Got response: ", response_json);
 			});
 		});
 
@@ -30,27 +31,17 @@ function nyt (key) {
 			callback(err);
 		});
 
-		req.on('socket', function (socket) {
-			socket.setTimeout(5000);
-			socket.on('timeout', function() {
-				req.abort();
-			});
-			socket.on('error', function(err) {
-				callback(err);
-			});
-		});
-		
-		req.end(data);
+		req.end();
 	}
 
 	this.get = function (api_path, callback, args) {
-		var path = '/svc/' + api_path + '/?' + querystring.stringify(args);
+		var path = api_path + '?' + querystring.stringify(args) + '&' + 'api-key=' + key;
 		console.log(path);
 		this.request(path, undefined, callback, args);
 	}
 
 	this.article = function (args, callback) {
-		var api_path = 'svc/search/v2/articlesearch';
+		var api_path = '/svc/search/v2/articlesearch.json';
 		if (!callback) {
 			callback = args;
 			args = undefined;
