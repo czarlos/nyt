@@ -27,20 +27,28 @@ function nyt (keys) {
 		req.end();
 	}
 
-	this.get = function (api_path, callback, args) {
-		var path = api_path + '?' + querystring.stringify(args) + '&' + 'api-key=' + keys.article;
-		//console.log(path);
+	this.get = function (path, callback, args) {
 		this.request(path, undefined, callback, args);
 	}
 
 	this.article = function (args, callback) {
-		var api_path = '/svc/search/v2/articlesearch.json';
 		if (!callback) {
 			callback = args;
 			args = undefined;
 		}
-		this.get(api_path, callback, args);
+        var path = '/svc/search/v2/articlesearch.json' + '?' + querystring.stringify(args) + '&' + 'api-key=' + keys.article;
+		this.get(path, callback, args);
 	}
+
+    this.best_sellers = function (args, callback) {
+        if (!callback) {
+            callback = args;
+            args = undefined;
+        }
+        var version = 'v2';
+        var path = '/svc/books/' + version + '/lists.json' + '?' + querystring.stringify(args) + '&' + 'api-key=' + keys.best_sellers;
+        this.get(path, callback, args);
+    }
 }
 
 module.exports = nyt;
