@@ -1,8 +1,7 @@
 var querystring = require('querystring');
 var http = require('http');
 
-function nyt (key) {
-
+function nyt (keys) {
 	this.request = function (path, data, callback, args) {
 		var options = {
 			hostname: 'api.nytimes.com',
@@ -29,7 +28,7 @@ function nyt (key) {
 	}
 
 	this.get = function (api_path, callback, args) {
-		var path = api_path + '?' + querystring.stringify(args) + '&' + 'api-key=' + key;
+		var path = api_path + '?' + querystring.stringify(args) + '&' + 'api-key=' + keys.article;
 		//console.log(path);
 		this.request(path, undefined, callback, args);
 	}
