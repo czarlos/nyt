@@ -60,9 +60,14 @@ function nyt (keys) {
         this.get(path, callback, args);
     }
 
-    this.data = {
-        money : function() {
-            console.log(myKeys.article);
+    this.article = {
+        get : function(args, callback) {
+            if(!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var path = '/svc/search/v2/articlesearch.json' + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys.article;
+            this.get(path, callback, args);
         }
     }
 }
