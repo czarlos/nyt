@@ -1,10 +1,11 @@
 var querystring = require('querystring');
 var http = require('http');
+var utils = require('./utils');
 
 function nyt (keys) {
     var myKeys = keys;
 
-	this.request = function (path, data, callback, args) {
+	var request = function (path, data, callback, args) {
 		var options = {
 			hostname: 'api.nytimes.com',
 			path: path
@@ -27,17 +28,8 @@ function nyt (keys) {
 		req.end();
 	}
 
-	this.get = function (path, callback, args) {
-		this.request(path, undefined, callback, args);
-	}
-
-	this.article = function (args, callback) {
-		if (!callback) {
-			callback = args;
-			args = undefined;
-		}
-        var path = '/svc/search/v2/articlesearch.json' + '?' + querystring.stringify(args) + '&' + 'api-key=' + keys.article;
-		this.get(path, callback, args);
+	var get = function (path, callback, args) {
+		request(path, undefined, callback, args);
 	}
 
     this.best_sellers = function (args, which, prequery, callback) {
@@ -61,13 +53,33 @@ function nyt (keys) {
     }
 
     this.article = {
-        get : function(args, callback) {
+        get : function (args, callback) {
             if(!callback) {
                 callback = args;
                 args = undefined;
             }
-            var path = '/svc/search/v2/articlesearch.json' + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys.article;
-            this.get(path, callback, args);
+            var path = '/svc/search/v2/articlesearch.json' +
+                '?' + querystring.stringify(args) +
+                '&' + 'api-key=' + myKeys.article;
+            get(path, callback, args);
+        }
+    }
+
+    this.bestSellers = {
+        get : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var books = '/svc/books/';
+            var path = books + version + 'lists/' +
+                args.date + '/' + args.listName +
+                '.json' + querystring.stringify(args) + '&' + 'api-key=' + myKeys.article;
+            //var newa = utils.removeArgs(['date'], args);
+            var newa = utils.removeArgs(['date'], args);
+            console.log(newa);
+            //get(path, callback, args);
         }
     }
 }
