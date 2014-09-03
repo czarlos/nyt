@@ -73,7 +73,10 @@ function nyt (keys) {
             }
             var version = 'v2/';
             var books = '/svc/books/';
-            var date = args.date;
+            var date = "";
+            if (typeof args.date != undefined) {
+                date = args.date;
+            }
             var list_name = args['list-name'];
             var args = utils.removeArgs(['date', 'list-name'], args);
             var path = books + version + 'lists/' +
