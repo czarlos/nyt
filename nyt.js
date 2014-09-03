@@ -60,7 +60,7 @@ function nyt (keys) {
             }
             var path = '/svc/search/v2/articlesearch.json' +
                 '?' + querystring.stringify(args) +
-                '&' + 'api-key=' + myKeys.article;
+                '&' + 'api-key=' + myKeys['article'];
             get(path, callback, args);
         }
     }
@@ -73,13 +73,13 @@ function nyt (keys) {
             }
             var version = 'v2/';
             var books = '/svc/books/';
+            var date = args.date;
+            var list_name = args['list-name'];
+            var args = utils.removeArgs(['date', 'list-name'], args);
             var path = books + version + 'lists/' +
-                args.date + '/' + args.listName +
-                '.json' + querystring.stringify(args) + '&' + 'api-key=' + myKeys.article;
-            //var newa = utils.removeArgs(['date'], args);
-            var newa = utils.removeArgs(['date'], args);
-            console.log(newa);
-            //get(path, callback, args);
+                date + '/' + list_name +
+                '.json' + querystring.stringify(args) + '?' + 'api-key=' + myKeys['best-sellers'];
+            get(path, callback, args);
         }
     }
 }
