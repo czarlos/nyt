@@ -81,6 +81,15 @@ function nyt (keys) {
                 '.json' + querystring.stringify(args) + '?' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
         }
+        search: function (args, callback) {
+
+        }
+        history : function (args, callback) {
+
+        }
+        names : function (args, callback) {
+
+        }
     }
 }
 
