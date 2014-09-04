@@ -102,10 +102,17 @@ function nyt (keys) {
             var format = '.json';
             var path = '/svc/books/' + version + 'lists/best-sellers/history' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
-        }/*
+        },
         names : function (args, callback) {
-
-        }*/
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var path = '/svc/books/' + version + 'lists/names' + format + '?' + 'api-key=' + myKeys['best-sellers'];
+            get(path, callback, args);
+        }
     }
 }
 
