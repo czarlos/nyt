@@ -31,7 +31,6 @@ function nyt (keys) {
 	var get = function (path, callback, args) {
 		request(path, undefined, callback, args);
 	}
-
     this.best_sellers = function (args, which, prequery, callback) {
 		if (which === 'get' && (typeof prequery.date === 'undefined' || typeof prequery.list_name === 'undefined')) {
 			throw new Error('Date and list name required to get bestsellers');
@@ -83,16 +82,25 @@ function nyt (keys) {
                 date + '/' + list_name +
                 '.json' + querystring.stringify(args) + '?' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
-        }
-        search: function (args, callback) {
-
-        }
+        },
+        search : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var path = '/svc/books/' + version + 'lists' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
+            console.log(path);
+            console.log(get(path, callback, args));
+            get(path, callback, args);
+        }/*
         history : function (args, callback) {
 
         }
         names : function (args, callback) {
 
-        }
+        }*/
     }
 }
 
