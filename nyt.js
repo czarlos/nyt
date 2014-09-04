@@ -91,13 +91,18 @@ function nyt (keys) {
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/books/' + version + 'lists' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
-            console.log(path);
-            console.log(get(path, callback, args));
+            get(path, callback, args);
+        },
+        history : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var path = '/svc/books/' + version + 'lists/best-sellers/history' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
         }/*
-        history : function (args, callback) {
-
-        }
         names : function (args, callback) {
 
         }*/
