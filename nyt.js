@@ -134,8 +134,6 @@ function nyt (keys) {
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/community/' + version + 'comments/recent' + format + '?force-replies=0' + '&' + querystring.stringify(args) + '&api-key=' + myKeys['community'];
-            console.log(path);
-            console.log(get(path, callback, args));
             get(path, callback, args);
         },
         random : function (args, callback) {
@@ -165,7 +163,6 @@ function nyt (keys) {
                 query = querystring.stringify(args) + '&';
             }
             var path = '/svc/politics/' + version + 'districts' + format + '?' + 'api-key=' + query + myKeys['districts'];
-            console.log(path);
             get(path, callback, args);
         }
     }
@@ -182,8 +179,25 @@ function nyt (keys) {
             if (querystring.stringify(args)) {
                 query = querystring.stringify(args) + '&';
             }
-            var path = '/svc/events/' + version + 'listings' + format + '?' + query + 'api-key=' + myKeys[''];
+            var path = '/svc/events/' + version + 'listings' + format + '?' + query + 'api-key=' + myKeys['event-listings'];
 
+            get(path, callback, args);
+        }
+    }
+
+    this.geo = {
+        search : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var query = '';
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+            var path = '/svc/semantic/' + version + 'geocodes/query' + format + '?' + query + 'api-key=' + myKeys['geo'];
             console.log(path);
             get(path, callback, args);
         }
