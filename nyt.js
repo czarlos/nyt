@@ -164,7 +164,26 @@ function nyt (keys) {
             if (querystring.stringify(args) != '') {
                 query = querystring.stringify(args) + '&';
             }
-            var path = '/svc/politics/' + version + 'districts' + format + '?' + 'api-key=' + myKeys['districts'];
+            var path = '/svc/politics/' + version + 'districts' + format + '?' + 'api-key=' + query + myKeys['districts'];
+            console.log(path);
+            get(path, callback, args);
+        }
+    }
+
+    this.eventListings = {
+        search : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var query = '';
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+            var path = '/svc/events/' + version + 'listings' + format + '?' + query + 'api-key=' + myKeys[''];
+
             console.log(path);
             get(path, callback, args);
         }
