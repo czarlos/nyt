@@ -127,7 +127,16 @@ function nyt (keys) {
 
     this.community = {
         recent : function (args, callback) {
-
+            if(!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var path = '/svc/community/' + version + 'comments/recent' + format + '?force-replies=0' + '&' + querystring.stringify(args) + '&api-key=' + myKeys['community'];
+            console.log(path);
+            console.log(get(path, callback, args));
+            get(path, callback, args);
         },
         random : function (args, callback) {
 
