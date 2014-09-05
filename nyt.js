@@ -202,6 +202,18 @@ function nyt (keys) {
             get(path, callback, args);
         }
     }
+
+    this.mostPopular = {
+        emailed : function (args, callback) {
+
+        },
+        shared : function (args, callback) {
+
+        },
+        viewed : function (args, callback) {
+
+        }
+    }
 }
 
 module.exports = nyt;
