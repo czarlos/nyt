@@ -238,7 +238,21 @@ function nyt (keys) {
             get(path, callback, args);
         },
         viewed : function (args, callback) {
-
+            if (! callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var query = '';
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+            var section = args.section;
+            var timePeriod = args['time-period'];
+            var path = '/svc/mostpopular/' + version + 'mostviewed/' + section +
+                '/' + timePeriod + format + '?' + query + 'api-key=' + myKeys['most-popular'];
+            get(path, callback, args);
         }
     }
 }
