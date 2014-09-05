@@ -198,14 +198,28 @@ function nyt (keys) {
                 query = querystring.stringify(args) + '&';
             }
             var path = '/svc/semantic/' + version + 'geocodes/query' + format + '?' + query + 'api-key=' + myKeys['geo'];
-            console.log(path);
             get(path, callback, args);
         }
     }
 
     this.mostPopular = {
         emailed : function (args, callback) {
-
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v2/';
+            var format = '.json';
+            var query = '';
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+            var section = args.section;
+            var timePeriod = args['time-period'];
+            var path = '/svc/mostpopular/' + version + 'mostemailed/' + section +
+                '/' + timePeriod + format + '?' + query + 'api-key='+ myKeys['most-popular'];
+            console.log(path);
+            get(path, callback, args);
         },
         shared : function (args, callback) {
 
