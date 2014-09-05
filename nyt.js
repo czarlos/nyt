@@ -124,6 +124,24 @@ function nyt (keys) {
             get(path, callback, args);
         }
     }
+
+    this.community = {
+        recent : function (args, callback) {
+
+        },
+        random : function (args, callback) {
+
+        },
+        byDate : function (args, callback) {
+
+        },
+        byUser : function (args, callback) {
+
+        },
+        byURL : function (args, callback) {
+
+        }
+    }
 }
 
 module.exports = nyt;
