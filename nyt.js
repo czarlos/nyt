@@ -282,7 +282,20 @@ function nyt (keys) {
             get(path, callback, args);
         },
         specific : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v3/';
+            var format = '.json';
+            var query = '';
 
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+            var path = '/svc/news/' + version + 'content' + format + '?' + query +
+                'api-key=' + myKeys['newswire'];
+            get(path, callback, args);
         }
     }
 
