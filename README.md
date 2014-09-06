@@ -9,3 +9,4 @@ New York Times API Wrapper
 - Geographic
 - Most Popular
 - TimesTags
+- Newswire
