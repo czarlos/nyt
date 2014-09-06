@@ -255,6 +255,25 @@ function nyt (keys) {
             get(path, callback, args);
         }
     }
+
+    this.timesTags = {
+        search : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+            var version = 'v1/';
+            var format = '.json';
+            var query = '';
+
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+            var path = '/svc/suggest/' + version + 'timestags' + '?' + query + 'api-key=' + myKeys['timestags'];
+            get(path, callback, args);
+
+        }
+    }
 }
 
 module.exports = nyt;

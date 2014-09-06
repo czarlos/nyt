@@ -7,3 +7,4 @@ New York Times API Wrapper
 - Districts
 - Event Listings
 - Geographic
+- Most Popular
