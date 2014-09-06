@@ -256,6 +256,36 @@ function nyt (keys) {
         }
     }
 
+    this.newswire = {
+        recent : function (args, callback) {
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
+
+            var version = 'v3/';
+            var source = args.source;
+            var format = args.format;
+            var section = args.section;
+            var timePeriod = '';
+
+            if (querystring.stringify(args)) {
+                query = querystring.stringify(args) + '&';
+            }
+
+            if (args['time-period']) {
+                timePeriod = args['time-period'];
+            }
+
+            var path = '/svc/news/' + version + 'content/all/' + section + '/' + timePeriod + format + '?'
+                + query + 'api-key=' + myKeys['newswire'];
+            get(path, callback, args);
+        },
+        specific : function (args, callback) {
+
+        }
+    }
+
     this.timesTags = {
         search : function (args, callback) {
             if (!callback) {
@@ -274,6 +304,7 @@ function nyt (keys) {
 
         }
     }
+
 }
 
 module.exports = nyt;

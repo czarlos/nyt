@@ -8,3 +8,4 @@ New York Times API Wrapper
 - Event Listings
 - Geographic
 - Most Popular
+- TimesTags
