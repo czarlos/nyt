@@ -1,9 +1,22 @@
 var querystring = require('querystring');
 var http = require('http');
 var utils = require('./utils');
+var util = require('util');
 
 function nyt (keys) {
     var myKeys = keys;
+    var A = '&';
+    var Q = '?';
+    var E = '=';
+    var S = '/';
+    var D = '.';
+    var API_KEY = 'api-key';
+    var V1 = 'v2';
+    var V2 = 'v2';
+    var V3 = 'v3';
+    var DEFAULT = 'json';
+    var SVC = 'svc';
+
 
 	var request = function (path, data, callback, args) {
 		var options = {
@@ -293,8 +306,8 @@ function nyt (keys) {
             if (querystring.stringify(args)) {
                 query = querystring.stringify(args) + '&';
             }
-            var path = '/svc/news/' + version + 'content' + format + '?' + query +
-                'api-key=' + myKeys['newswire'];
+            var path = util.format('%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s', S, SVC, S, 'news', S, V3, S, 'content', D,
+                                   DEFAULT, Q, query, API_KEY, E, myKeys['newswire']);
             get(path, callback, args);
         }
     }
