@@ -295,20 +295,12 @@ function nyt (keys) {
             get(path, callback, args);
         },
         specific : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
-            var version = 'v3/';
-            var format = '.json';
-            var query = '';
-
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
+            utils.checkCallback(args, callback);
+            var query = utils.checkQuery(args);
             var path = util.format('%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s', S, SVC, S, 'news', S, V3, S, 'content', D,
                                    DEFAULT, Q, query, API_KEY, E, myKeys['newswire']);
             get(path, callback, args);
+            console.log(path);
         }
     }
 
