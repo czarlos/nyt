@@ -1,6 +1,6 @@
 {
   "name": "nyt",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "NYT is a wrapper around the New York Times API",
   "main": "nyt.js",
   "scripts": {

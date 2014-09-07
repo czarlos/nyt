@@ -10,7 +10,7 @@ function nyt (keys) {
     var S = '/';
     var D = '.';
     var API_KEY = 'api-key';
-    var V1 = 'v2';
+    var V1 = 'v1';
     var V2 = 'v2';
     var V3 = 'v3';
     var DEFAULT = 'json';
@@ -309,14 +309,8 @@ function nyt (keys) {
                 callback = args;
                 args = undefined;
             }
-            var version = 'v1/';
-            var format = '.json';
-            var query = '';
-
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-            var path = '/svc/suggest/' + version + 'timestags' + '?' + query + 'api-key=' + myKeys['timestags'];
+            var query = utils.checkQuery(args);
+            var path = S.concat(SVC,S,'suggest',S,V1,S,'timestags',Q,query,API_KEY,E,myKeys['timestags']);
             get(path, callback, args);
 
         }
