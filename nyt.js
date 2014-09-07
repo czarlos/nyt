@@ -1,7 +1,6 @@
 var querystring = require('querystring');
 var http = require('http');
 var utils = require('./utils');
-var util = require('util');
 
 function nyt (keys) {
     var myKeys = keys;
@@ -44,6 +43,11 @@ function nyt (keys) {
 	var get = function (path, callback, args) {
 		request(path, undefined, callback, args);
 	}
+
+    function Base() {
+        this.ant = "ant";
+    }
+
     this.best_sellers = function (args, which, prequery, callback) {
 		if (which === 'get' && (typeof prequery.date === 'undefined' || typeof prequery.list_name === 'undefined')) {
 			throw new Error('Date and list name required to get bestsellers');
@@ -275,32 +279,27 @@ function nyt (keys) {
                 callback = args;
                 args = undefined;
             }
+            var source = utils.checkField(args['source'], '');
+            var format = utils.checkField(args['format'], DEFAULT);
+            var section = utils.checkField(args['section'], '');
+            var timePeriod = utils.checkField(args['time-period'], '');
 
-            var version = 'v3/';
-            var source = args.source;
-            var format = args.format;
-            var section = args.section;
-            var timePeriod = '';
+            var query = utils.checkQuery(args);
+            var path = S.concat(SVC,S,'news',S,V3,S,'content',S,source,S,section,S,timePeriod,D,format,Q,
+                               query,API_KEY,E,myKeys['newswire']);
 
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-
-            if (args['time-period']) {
-                timePeriod = args['time-period'];
-            }
-
-            var path = '/svc/news/' + version + 'content/all/' + section + '/' + timePeriod + format + '?'
-                + query + 'api-key=' + myKeys['newswire'];
             get(path, callback, args);
         },
         specific : function (args, callback) {
-            utils.checkCallback(args, callback);
+            if (!callback) {
+                callback = args;
+                args = undefined;
+            }
             var query = utils.checkQuery(args);
-            var path = util.format('%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s', S, SVC, S, 'news', S, V3, S, 'content', D,
+            var path = S.concat(SVC, S, 'news', S, V3, S, 'content', D,
                                    DEFAULT, Q, query, API_KEY, E, myKeys['newswire']);
+
             get(path, callback, args);
-            console.log(path);
         }
     }
 

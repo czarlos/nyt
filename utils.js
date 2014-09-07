@@ -18,13 +18,13 @@ var checkQuery = function (args) {
     return query;
 }
 
-var checkCallback = function (args, callback) {
-    if (!callback) {
-        callback = args;
-        args = undefined;
+var checkField = function (field, defaultField) {
+    if(!field) {
+        field = defaultField;
     }
+    return field;
 }
 
 exports.removeArgs = removeArgs;
 exports.checkQuery = checkQuery;
-exports.checkCallback = checkCallback;
+exports.checkField = checkField;
