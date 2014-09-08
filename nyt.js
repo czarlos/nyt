@@ -50,9 +50,11 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var path = '/svc/search/v2/articlesearch.json' +
-                '?' + querystring.stringify(args) +
-                '&' + 'api-key=' + myKeys['article'];
+            var query = checkQuery(args);
+            var format = checkField(args['format'], DEFAULT);
+
+            var path = S.concat(SVC, S, 'search', S, V2, S, 'articlesearch',
+                                D, format, API_KEY, E, myKeys['article']);
             get(path, callback, args);
         }
     }
@@ -63,17 +65,14 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var books = '/svc/books/';
-            var date = "";
-            if (typeof args.date != undefined) {
-                date = args.date;
-            }
+            var date = utils.checkField(args['date'], '');
             var list_name = args['list-name'];
-            var args = utils.removeArgs(['date', 'list-name'], args);
-            var path = books + version + 'lists/' +
-                date + '/' + list_name +
-                '.json' + querystring.stringify(args) + '?' + 'api-key=' + myKeys['best-sellers'];
+            args = utils.removeArgs(['date', 'list-name'], args);
+            var query = utils.checkQuery(args);
+
+            var path = S.concat(SVC, S, 'books', S, V2, S, 'lists', S,
+                               date, S, list_name, D, format, query, Q,
+                               API_KEY, E, myKeys['best-sellers']);
             get(path, callback, args);
         },
         search : function (args, callback) {
@@ -81,9 +80,11 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var path = '/svc/books/' + version + 'lists' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+
+            var path = S.concat(SVC, C, 'books', S, V2, S, 'lists', D, format, Q,
+                               query, API_KEY, E, myKeys['best-sellers']);
             get(path, callback, args);
         },
         history : function (args, callback) {
@@ -91,9 +92,12 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var path = '/svc/books/' + version + 'lists/best-sellers/history' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+
+            var path = S.concat(SVC, S, 'books', S, V2, S, 'lists', S,
+                                'best-sellers', S, 'history', D, format,
+                                Q, query, API_KEY, E, myKeys['best-sellers']);
             get(path, callback, args);
         },
         overview : function (args, callback) {
@@ -101,9 +105,11 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var path = '/svc/books/' + version + 'lists/overview' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
+            var query = checkQuery(args);
+            var format = utils.checkField(args['format'], DEFAULT);
+            var path = utils.concat(SVC, 'books', S, V2, S, 'lists', S, 'overview',
+                                   D, format, Q, query, API_KEY, E,
+                                   myKeys['best-sellers']);
             get(path, callback, args);
         },
         names : function (args, callback) {
@@ -111,9 +117,9 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var path = '/svc/books/' + version + 'lists/names' + format + '?' + 'api-key=' + myKeys['best-sellers'];
+            var format = checkField(args['format'], DEFAULT);
+            var path = S.concat(SVC, S, 'books', S, V2, 'lists', S, 'names',
+                               D, format, Q, API_KEY, E, myKeys[best-sellers]);
             get(path, callback, args);
         }
     }
@@ -124,9 +130,11 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var path = '/svc/community/' + version + 'comments/recent' + format + '?force-replies=0' + '&' + querystring.stringify(args) + '&api-key=' + myKeys['community'];
+            var format = utils.checkField(args['format'], DEFAULT);
+
+            var path = S.concat(SVC, S, 'community', S, V2, 'comments', S, 'recent',
+                               D, format, Q, 'format-replies', E, '0', A,
+                               query, A, API_KEY, E, myKeys['community']);
             get(path, callback, args);
         },
         random : function (args, callback) {
@@ -149,13 +157,10 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var query = '';
-            if (querystring.stringify(args) != '') {
-                query = querystring.stringify(args) + '&';
-            }
-            var path = '/svc/politics/' + version + 'districts' + format + '?' + 'api-key=' + query + myKeys['districts'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+            var path = S.concat(SVC, S, 'politics', S, V2, 'districts', D, format,
+                               Q, API_KEY, E, query, myKeys['districts']);
             get(path, callback, args);
         }
     }
@@ -166,13 +171,11 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var query = '';
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-            var path = '/svc/events/' + version + 'listings' + format + '?' + query + 'api-key=' + myKeys['event-listings'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+
+            var path = S.concat(SVC, S, 'events', S, V2, S, D, format, Q, query,
+                                API_KEY, E, myKeys['event-listings']);
 
             get(path, callback, args);
         }
@@ -184,13 +187,11 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var query = '';
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-            var path = '/svc/semantic/' + version + 'geocodes/query' + format + '?' + query + 'api-key=' + myKeys['geo'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+
+            var path = S.concat(SVC, S, 'semantic', S, V2, 'geocodes', S, 'query',
+                               D, format, Q, query, API_KEY, E, myKeys['geo']);
             get(path, callback, args);
         }
     }
@@ -200,17 +201,15 @@ function nyt (keys) {
             var callbackReturn = utils.checkCallback(args, callback);
             args = callbackReturn.args;
             callback = callbackReturn.callback;
-            
-            var version = 'v2/';
-            var format = '.json';
-            var query = '';
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-            var section = args.section;
-            var timePeriod = args['time-period'];
-            var path = '/svc/mostpopular/' + version + 'mostemailed/' + section +
-                '/' + timePeriod + format + '?' + query + 'api-key='+ myKeys['most-popular'];
+
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+            var section = utils.checkField(args['section'], '');
+            var timePeriod = utils.checkField(args['time-period'], '');
+
+            var path = S.concat(SVC, S, 'mostpopular', S, V2, 'mostemailed',
+                               S, section, S, timePeriod, D, format, Q, query,
+                               API_KEY, E, myKeys['most-popular']);
             get(path, callback, args);
         },
         shared : function (args, callback) {
@@ -218,16 +217,14 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var query = '';
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-            var section = args.section;
-            var timePeriod = args['time-period'];
-            var path = '/svc/mostpopular/' + version + 'mostshared/' + section +
-                '/' + timePeriod + format + '?' + query + 'api-key=' + myKeys['most-popular'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+            var section = utils.checkField(args['section'], '');
+            var timePeriod = utils.checkField(args['time-period'], '');
+
+            var path = S.concat(SVC, S, 'mostpopular', S, V2, 'mostshared', S,
+                               section, S, timePeriod, D, format, Q, query, API_KEY,
+                               E, myKeys['most-popular']);
             get(path, callback, args);
         },
         viewed : function (args, callback) {
@@ -235,16 +232,14 @@ function nyt (keys) {
             args = callbackReturn.args;
             callback = callbackReturn.callback;
 
-            var version = 'v2/';
-            var format = '.json';
-            var query = '';
-            if (querystring.stringify(args)) {
-                query = querystring.stringify(args) + '&';
-            }
-            var section = args.section;
-            var timePeriod = args['time-period'];
-            var path = '/svc/mostpopular/' + version + 'mostviewed/' + section +
-                '/' + timePeriod + format + '?' + query + 'api-key=' + myKeys['most-popular'];
+            var format = utils.checkField(args['format'], DEFAULT);
+            var query = utils.checkQuery(args);
+            var section = utils.checkField(args['section'], '');
+            var timePeriod = utils.checkField(args['time-period'], '');
+
+            var path = S.concat(SVC, S, 'mostpopular', S, V2, S, 'mostviewed', S,
+                               section, S, timePeriod, D, format, Q, query, API_KEY,
+                               E, myKeys['most-popular']);
             get(path, callback, args);
         }
     }
@@ -261,8 +256,9 @@ function nyt (keys) {
             var timePeriod = utils.checkField(args['time-period'], '');
 
             var query = utils.checkQuery(args);
-            var path = S.concat(SVC,S,'news',S,V3,S,'content',S,source,S,section,S,timePeriod,D,format,Q,
-                               query,API_KEY,E,myKeys['newswire']);
+            var path = S.concat(SVC,S,'news',S,V3,S,'content',S,source,S,section,
+                                S,timePeriod,D,format,Q,
+                                query,API_KEY,E,myKeys['newswire']);
 
             get(path, callback, args);
         },
