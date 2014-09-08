@@ -44,36 +44,12 @@ function nyt (keys) {
 		request(path, undefined, callback, args);
 	}
 
-    function Base() {
-        this.ant = "ant";
-    }
-
-    this.best_sellers = function (args, which, prequery, callback) {
-		if (which === 'get' && (typeof prequery.date === 'undefined' || typeof prequery.list_name === 'undefined')) {
-			throw new Error('Date and list name required to get bestsellers');
-		}
-
-		var sub_api = {'get':'lists/' + prequery.date + '/' + prequery.list_name + '.json',
-		'search':'lists.json',
-		'history':'lists/best-sellers/history.json',
-		'overview':'lists/overview.json',
-		'names':'lists/names.json'}
-
-		if (!callback) {
-            callback = args;
-            args = undefined;
-        }
-        var version = 'v2/';
-        var path = '/svc/books/' + version + sub_api[which] + '?' + querystring.stringify(args) + '&' + 'api-key=' + keys.best_sellers;
-        this.get(path, callback, args);
-    }
-
     this.article = {
         get : function (args, callback) {
-            if(!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var path = '/svc/search/v2/articlesearch.json' +
                 '?' + querystring.stringify(args) +
                 '&' + 'api-key=' + myKeys['article'];
@@ -83,10 +59,10 @@ function nyt (keys) {
 
     this.bestSellers = {
         get : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var books = '/svc/books/';
             var date = "";
@@ -101,40 +77,40 @@ function nyt (keys) {
             get(path, callback, args);
         },
         search : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/books/' + version + 'lists' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
         },
         history : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/books/' + version + 'lists/best-sellers/history' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
         },
         overview : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/books/' + version + 'lists/overview' + format + '?' + querystring.stringify(args) + '&' + 'api-key=' + myKeys['best-sellers'];
             get(path, callback, args);
         },
         names : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/books/' + version + 'lists/names' + format + '?' + 'api-key=' + myKeys['best-sellers'];
@@ -144,10 +120,10 @@ function nyt (keys) {
 
     this.community = {
         recent : function (args, callback) {
-            if(!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var path = '/svc/community/' + version + 'comments/recent' + format + '?force-replies=0' + '&' + querystring.stringify(args) + '&api-key=' + myKeys['community'];
@@ -169,10 +145,10 @@ function nyt (keys) {
 
     this.districts = {
         search : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var query = '';
@@ -186,10 +162,10 @@ function nyt (keys) {
 
     this.eventListings = {
         search : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var query = '';
@@ -204,10 +180,10 @@ function nyt (keys) {
 
     this.geo = {
         search : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var query = '';
@@ -221,10 +197,10 @@ function nyt (keys) {
 
     this.mostPopular = {
         emailed : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+            
             var version = 'v2/';
             var format = '.json';
             var query = '';
@@ -238,10 +214,10 @@ function nyt (keys) {
             get(path, callback, args);
         },
         shared : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var query = '';
@@ -255,10 +231,10 @@ function nyt (keys) {
             get(path, callback, args);
         },
         viewed : function (args, callback) {
-            if (! callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var version = 'v2/';
             var format = '.json';
             var query = '';
@@ -275,10 +251,10 @@ function nyt (keys) {
 
     this.newswire = {
         recent : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var source = utils.checkField(args['source'], '');
             var format = utils.checkField(args['format'], DEFAULT);
             var section = utils.checkField(args['section'], '');
@@ -291,10 +267,10 @@ function nyt (keys) {
             get(path, callback, args);
         },
         specific : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var query = utils.checkQuery(args);
             var path = S.concat(SVC, S, 'news', S, V3, S, 'content', D,
                                    DEFAULT, Q, query, API_KEY, E, myKeys['newswire']);
@@ -305,10 +281,10 @@ function nyt (keys) {
 
     this.timesTags = {
         search : function (args, callback) {
-            if (!callback) {
-                callback = args;
-                args = undefined;
-            }
+            var callbackReturn = utils.checkCallback(args, callback);
+            args = callbackReturn.args;
+            callback = callbackReturn.callback;
+
             var query = utils.checkQuery(args);
             var path = S.concat(SVC,S,'suggest',S,V1,S,'timestags',Q,query,API_KEY,E,myKeys['timestags']);
             get(path, callback, args);

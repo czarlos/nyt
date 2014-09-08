@@ -25,6 +25,21 @@ var checkField = function (field, defaultField) {
     return field;
 }
 
+var checkCallback = function (args, callback) {
+    if (!callback) {
+        callback = args;
+        args = undefined;
+    }
+    var returnObject = {};
+
+    returnObject.args = args;
+    returnObject.callback = callback;
+
+    console.log(returnObject);
+    return returnObject;
+}
+
 exports.removeArgs = removeArgs;
 exports.checkQuery = checkQuery;
 exports.checkField = checkField;
+exports.checkCallback = checkCallback;
