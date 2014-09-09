@@ -4,6 +4,7 @@ var response_lib = require('./response_lib');
 var reql = require('./request_lib');
 
 var timestags = require('./timestags');
+var newswire = require('./newswire');
 
 function nyt (keys) {
     var myKeys = keys;
@@ -224,32 +225,10 @@ function nyt (keys) {
 
     this.newswire = {
         recent : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var source = response_lib.checkField(args['source'], '');
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var section = response_lib.checkField(args['section'], '');
-            var timePeriod = response_lib.checkField(args['time-period'], '');
-
-            var query = response_lib.checkQuery(args);
-            var path = S.concat(SVC,S,'news',S,V3,S,'content',S,source,S,section,
-                                S,timePeriod,D,format,Q,
-                                query,API_KEY,E,myKeys['newswire']);
-
-            reql.get(path, callback, args);
+            newswire.recent(args, callback, myKeys, table);
         },
         specific : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var query = response_lib.checkQuery(args);
-            var path = S.concat(SVC, S, 'news', S, V3, S, 'content', D,
-                                   DEFAULT, Q, query, API_KEY, E, myKeys['newswire']);
-
-            reql.get(path, callback, args);
+            newswire.specific(args, callback, myKeys, table);
         }
     }
 
