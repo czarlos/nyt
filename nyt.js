@@ -48,16 +48,16 @@ function nyt (keys) {
             community.recent(args, callback, myKeys, table);
         },
         random : function (args, callback) {
-
+            community.random(args, callback, myKeys, table);
         },
         byDate : function (args, callback) {
-
+            community.byDate(args, callback, myKeys, table);
         },
         byUser : function (args, callback) {
-
+            community.byUser(args, callback, myKeys, table);
         },
         byURL : function (args, callback) {
-
+            community.byURL(args, callback, myKeys, table);
         }
     }
 
