@@ -26,14 +26,38 @@ var random = function (args, callback, myKeys, t) {
 };
 
 var byDate = function (args, callback, myKeys, t) {
+    var callbackReturn = response_lib.checkCallback(args, callback);
+    args = callbackReturn.args;
+    callback = callbackReturn.callback;
 
+    var format = response_lib.checkField(args['format'], t.DEFAULT);
+    var date = response_lib.checkField(args['YYYYMMDD'], '');
+    response_lib.removeArgs(['YYYYMMDD'], args);
+    var query = response_lib.checkQuery(args);
+    var path = (t.S).concat(t.SVC, t.S, 'community', t.S, t.V2, t.S, 'comments', t.S,
+    						'by-date', t.S, date, t.D, format, t.Q, query, t.API_KEY, t.E,
+    						myKeys['community']);
+    console.log(path);
+    reql.get(path, callback, args);
 };
 
 var byUser = function (args, callback, myKeys, t) {
+    var callbackReturn = response_lib.checkCallback(args, callback);
+    args = callbackReturn.args;
+    callback = callbackReturn.callback;
+
+    var format = response_lib.checkField(args['format'], t.DEFAULT);
+    var query = response_lib.checkQuery(args);
 
 };
 
 var byURL = function (args, callback, myKeys, t) {
+    var callbackReturn = response_lib.checkCallback(args, callback);
+    args = callbackReturn.args;
+    callback = callbackReturn.callback;
+
+    var format = response_lib.checkField(args['format'], t.DEFAULT);
+    var query = response_lib.checkQuery(args);
 
 }
 
