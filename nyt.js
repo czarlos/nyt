@@ -12,6 +12,7 @@ var districts = require('./districts');
 var community = require('./community');
 var best_sellers = require('./best_sellers');
 var article = require('./article');
+var semantic = require('./semantic');
 
 function nyt (keys) {
     var myKeys = keys;
@@ -97,6 +98,21 @@ function nyt (keys) {
         },
         specific : function (args, callback) {
             newswire.specific(args, callback, myKeys, table);
+        }
+    }
+
+    this.semantic = {
+        name : function (args, callback) {
+            semantic.name (args, callback, myKeys, table);
+        },
+        uri : function (args, callback) {
+            semantic.uri (args, callback, myKeys, table);
+        },
+        article : function (args, callback) {
+            semantic.article (args, callback, myKeys, table);
+        },
+        search : function (args, callback) {
+            semantic.search (args, callback, myKeys, table);
         }
     }
 
