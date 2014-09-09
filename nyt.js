@@ -5,6 +5,7 @@ var reql = require('./request_lib');
 
 var timestags = require('./timestags');
 var newswire = require('./newswire');
+var most_popular = require('./most_popular')
 
 function nyt (keys) {
     var myKeys = keys;
@@ -177,49 +178,13 @@ function nyt (keys) {
 
     this.mostPopular = {
         emailed : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-            var section = response_lib.checkField(args['section'], '');
-            var timePeriod = response_lib.checkField(args['time-period'], '');
-
-            var path = S.concat(SVC, S, 'mostpopular', S, V2, 'mostemailed',
-                               S, section, S, timePeriod, D, format, Q, query,
-                               API_KEY, E, myKeys['most-popular']);
-            reql.get(path, callback, args);
+            most_popular.emailed(args, callback, myKeys, table);
         },
         shared : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-            var section = response_lib.checkField(args['section'], '');
-            var timePeriod = response_lib.checkField(args['time-period'], '');
-
-            var path = S.concat(SVC, S, 'mostpopular', S, V2, 'mostshared', S,
-                               section, S, timePeriod, D, format, Q, query, API_KEY,
-                               E, myKeys['most-popular']);
-            reql.get(path, callback, args);
+            most_popular.shared(args, callback, myKeys, table);
         },
         viewed : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-            var section = response_lib.checkField(args['section'], '');
-            var timePeriod = response_lib.checkField(args['time-period'], '');
-
-            var path = S.concat(SVC, S, 'mostpopular', S, V2, S, 'mostviewed', S,
-                               section, S, timePeriod, D, format, Q, query, API_KEY,
-                               E, myKeys['most-popular']);
-            reql.get(path, callback, args);
+            most_popular.viewed(args, callback, myKeys, table);
         }
     }
 
