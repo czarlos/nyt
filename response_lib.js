@@ -1,4 +1,3 @@
-var util = require('util');
 var querystring = require('querystring');
 
 var removeArgs = function (argsToStrip, args) {
@@ -35,7 +34,6 @@ var checkCallback = function (args, callback) {
     returnObject.args = args;
     returnObject.callback = callback;
 
-    console.log(returnObject);
     return returnObject;
 }
 
