@@ -19,6 +19,9 @@ function nyt (keys) {
     var DEFAULT = 'json';
     var SVC = 'svc';
 
+    var table = {'A':'&', 'Q':'?', 'E':'=', 'S':'/', 'D':'.', 'API_KEY':'api-key', 'V1':'v1',
+                        'V2':'v2', 'V3':'v3', 'DEFAULT':'json', 'SVC':'svc'};
+
     this.article = {
         get : function (args, callback) {
             var callbackReturn = response_lib.checkCallback(args, callback);
@@ -252,7 +255,7 @@ function nyt (keys) {
 
     this.timestags = {
         search : function (args, callback) {
-            timestags.search(args, callback, myKeys);
+            timestags.search(args, callback, myKeys, table);
         }
     }
 }
