@@ -3,6 +3,8 @@ var http = require('http');
 var response_lib = require('./response_lib');
 var reql = require('./request_lib');
 
+var timestags = require('./timestags');
+
 function nyt (keys) {
     var myKeys = keys;
     var A = '&';
@@ -248,19 +250,11 @@ function nyt (keys) {
         }
     }
 
-    this.timesTags = {
+    this.timestags = {
         search : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var query = response_lib.checkQuery(args);
-            var path = S.concat(SVC,S,'suggest',S,V1,S,'timestags',Q,query,API_KEY,E,myKeys['timestags']);
-            reql.get(path, callback, args);
-
+            timestags.search(args, callback, myKeys);
         }
     }
-
 }
 
 module.exports = nyt;
