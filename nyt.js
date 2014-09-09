@@ -5,117 +5,47 @@ var reql = require('./request_lib');
 
 var timestags = require('./timestags');
 var newswire = require('./newswire');
-var most_popular = require('./most_popular')
+var most_popular = require('./most_popular');
+var geo = require('./geo');
+var event_listings = require('./event_listings');
+var districts = require('./districts');
+var community = require('./community');
+var best_sellers = require('./best_sellers');
+var article = require('./article');
 
 function nyt (keys) {
     var myKeys = keys;
-    var A = '&';
-    var Q = '?';
-    var E = '=';
-    var S = '/';
-    var D = '.';
-    var API_KEY = 'api-key';
-    var V1 = 'v1';
-    var V2 = 'v2';
-    var V3 = 'v3';
-    var DEFAULT = 'json';
-    var SVC = 'svc';
 
     var table = {'A':'&', 'Q':'?', 'E':'=', 'S':'/', 'D':'.', 'API_KEY':'api-key', 'V1':'v1',
                         'V2':'v2', 'V3':'v3', 'DEFAULT':'json', 'SVC':'svc'};
 
     this.article = {
         get : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var query = checkQuery(args);
-            var format = checkField(args['format'], DEFAULT);
-
-            var path = S.concat(SVC, S, 'search', S, V2, S, 'articlesearch',
-                                D, format, API_KEY, E, myKeys['article']);
-            reql.get(path, callback, args);
+            article.get(args, callback, myKeys, table);
         }
     }
 
     this.bestSellers = {
         get : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var date = response_lib.checkField(args['date'], '');
-            var list_name = args['list-name'];
-            args = response_lib.removeArgs(['date', 'list-name'], args);
-            var query = response_lib.checkQuery(args);
-
-            var path = S.concat(SVC, S, 'books', S, V2, S, 'lists', S,
-                               date, S, list_name, S, D, format, query, Q,
-                               API_KEY, E, myKeys['best-sellers']);
-            reql.get(path, callback, args);
+            best_sellers.get(args, callback, myKeys, table);
         },
         search : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-
-            var path = S.concat(SVC, C, 'books', S, V2, S, 'lists', D, format, Q,
-                               query, API_KEY, E, myKeys['best-sellers']);
-            reql.get(path, callback, args);
+            best_sellers.search(args, callback, myKeys, table);
         },
         history : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-
-            var path = S.concat(SVC, S, 'books', S, V2, S, 'lists', S,
-                                'best-sellers', S, 'history', D, format,
-                                Q, query, API_KEY, E, myKeys['best-sellers']);
-            reql.get(path, callback, args);
+            best_sellers.history(args, callback, myKeys, table);
         },
         overview : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var query = checkQuery(args);
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var path = response_lib.concat(SVC, 'books', S, V2, S, 'lists', S, 'overview',
-                                   D, format, Q, query, API_KEY, E,
-                                   myKeys['best-sellers']);
-            reql.get(path, callback, args);
+            best_sellers.overview(args, callback, myKeys, table);
         },
         names : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = checkField(args['format'], DEFAULT);
-            var path = S.concat(SVC, S, 'books', S, V2, 'lists', S, 'names',
-                               D, format, Q, API_KEY, E, myKeys[best-sellers]);
-            reql.get(path, callback, args);
+            best_sellers.names(args, callback, myKeys, table);
         }
     }
 
     this.community = {
         recent : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-
-            var path = S.concat(SVC, S, 'community', S, V2, 'comments', S, 'recent',
-                               D, format, Q, 'format-replies', E, '0', A,
-                               query, A, API_KEY, E, myKeys['community']);
-            reql.get(path, callback, args);
+            community.recent(args, callback, myKeys, table);
         },
         random : function (args, callback) {
 
@@ -133,46 +63,19 @@ function nyt (keys) {
 
     this.districts = {
         search : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-            var path = S.concat(SVC, S, 'politics', S, V2, 'districts', D, format,
-                               Q, API_KEY, E, query, myKeys['districts']);
-            reql.get(path, callback, args);
+            districts.search(args, callback, myKeys, table);
         }
     }
 
     this.eventListings = {
         search : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-
-            var path = S.concat(SVC, S, 'events', S, V2, S, D, format, Q, query,
-                                API_KEY, E, myKeys['event-listings']);
-
-            reql.get(path, callback, args);
+            event_listings.search(args, callback, myKeys, table);
         }
     }
 
     this.geo = {
         search : function (args, callback) {
-            var callbackReturn = response_lib.checkCallback(args, callback);
-            args = callbackReturn.args;
-            callback = callbackReturn.callback;
-
-            var format = response_lib.checkField(args['format'], DEFAULT);
-            var query = response_lib.checkQuery(args);
-
-            var path = S.concat(SVC, S, 'semantic', S, V2, 'geocodes', S, 'query',
-                               D, format, Q, query, API_KEY, E, myKeys['geo']);
-            reql.get(path, callback, args);
+            geo.search(args, callback, myKeys, table);
         }
     }
 
