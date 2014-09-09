@@ -15,7 +15,14 @@ var recent = function (args, callback, myKeys, t) {
 };
 
 var random = function (args, callback, myKeys, t) {
+    var callbackReturn = response_lib.checkCallback(args, callback);
+    args = callbackReturn.args;
+    callback = callbackReturn.callback;
 
+    var format = response_lib.checkField(args['format'], t.DEFAULT);
+    var path = (t.S).concat(t.SVC, t.S, 'community', t.S, t.V2, t.S, 'comments', t.S,'random',
+                            t.D, format, t.Q, t.API_KEY, t.E, myKeys['community']);
+    reql.get(path, callback, args);
 };
 
 var byDate = function (args, callback, myKeys, t) {
