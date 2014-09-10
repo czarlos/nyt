@@ -17,9 +17,6 @@ var semantic = require('./semantic');
 function nyt (keys) {
     var myKeys = keys;
 
-    var table = {'A':'&', 'Q':'?', 'E':'=', 'S':'/', 'D':'.', 'API_KEY':'api-key', 'V1':'v1',
-                        'V2':'v2', 'V3':'v3', 'DEFAULT':'json', 'SVC':'svc'};
-
     this.article = {
         get : function (args, callback) {
             article.get(args, callback, myKeys);
@@ -64,61 +61,61 @@ function nyt (keys) {
 
     this.districts = {
         search : function (args, callback) {
-            districts.search(args, callback, myKeys, table);
+            districts.search(args, callback, myKeys);
         }
     }
 
     this.eventListings = {
         search : function (args, callback) {
-            event_listings.search(args, callback, myKeys, table);
+            event_listings.search(args, callback, myKeys);
         }
     }
 
     this.geo = {
         search : function (args, callback) {
-            geo.search(args, callback, myKeys, table);
+            geo.search(args, callback, myKeys);
         }
     }
 
     this.mostPopular = {
         emailed : function (args, callback) {
-            most_popular.emailed(args, callback, myKeys, table);
+            most_popular.emailed(args, callback, myKeys);
         },
         shared : function (args, callback) {
-            most_popular.shared(args, callback, myKeys, table);
+            most_popular.shared(args, callback, myKeys);
         },
         viewed : function (args, callback) {
-            most_popular.viewed(args, callback, myKeys, table);
+            most_popular.viewed(args, callback, myKeys);
         }
     }
 
     this.newswire = {
         recent : function (args, callback) {
-            newswire.recent(args, callback, myKeys, table);
+            newswire.recent(args, callback, myKeys);
         },
         specific : function (args, callback) {
-            newswire.specific(args, callback, myKeys, table);
+            newswire.specific(args, callback, myKeys);
         }
     }
 
     this.semantic = {
         name : function (args, callback) {
-            semantic.name (args, callback, myKeys, table);
+            semantic.name (args, callback, myKeys);
         },
         uri : function (args, callback) {
-            semantic.uri (args, callback, myKeys, table);
+            semantic.uri (args, callback, myKeys);
         },
         article : function (args, callback) {
-            semantic.article (args, callback, myKeys, table);
+            semantic.article (args, callback, myKeys);
         },
         search : function (args, callback) {
-            semantic.search (args, callback, myKeys, table);
+            semantic.search (args, callback, myKeys);
         }
     }
 
     this.timestags = {
         search : function (args, callback) {
-            timestags.search(args, callback, myKeys, table);
+            timestags.search(args, callback, myKeys);
         }
     }
 }
