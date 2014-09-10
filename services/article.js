@@ -1,5 +1,5 @@
-var response_lib = require('./response_lib');
-var reql = require('./request_lib');
+var response_lib = require('../lib/response_lib');
+var reql = require('../lib/request_lib');
 
 var base = '/svc/search/v2/articlesearch';
 var keyName = 'article-search';

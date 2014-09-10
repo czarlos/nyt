@@ -1,18 +1,19 @@
 var querystring = require('querystring');
 var http = require('http');
-var response_lib = require('./response_lib');
-var reql = require('./request_lib');
 
-var timestags = require('./timestags');
-var newswire = require('./newswire');
-var most_popular = require('./most_popular');
-var geo = require('./geo');
-var event_listings = require('./event_listings');
-var districts = require('./districts');
-var community = require('./community');
-var best_sellers = require('./best_sellers');
-var article = require('./article');
-var semantic = require('./semantic');
+var response_lib = require('lib/response_lib');
+var reql = require('lib/request_lib');
+
+var timestags = require('services/timestags');
+var newswire = require('services/newswire');
+var most_popular = require('services/most_popular');
+var geo = require('services/geo');
+var event_listings = require('services/event_listings');
+var districts = require('services/districts');
+var community = require('services/community');
+var best_sellers = require('services/best_sellers');
+var article = require('services/article');
+var semantic = require('services/semantic');
 
 function nyt (keys) {
     var myKeys = keys;
