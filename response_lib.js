@@ -24,6 +24,18 @@ var checkField = function (field, defaultField) {
     return field;
 }
 
+var checkFieldAndRemove = function (field, defaultField, args) {
+    if (!args[field]) {
+        return defaultField;
+    }
+    else {
+        result = args[field];
+        removeArgs([field], args);
+        return result;
+    }
+
+}
+
 var checkCallback = function (args, callback) {
     if (!callback) {
         callback = args;
@@ -40,4 +52,5 @@ var checkCallback = function (args, callback) {
 exports.removeArgs = removeArgs;
 exports.checkQuery = checkQuery;
 exports.checkField = checkField;
+exports.checkFieldAndRemove = checkFieldAndRemove;
 exports.checkCallback = checkCallback;

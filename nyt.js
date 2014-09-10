@@ -22,43 +22,43 @@ function nyt (keys) {
 
     this.article = {
         get : function (args, callback) {
-            article.get(args, callback, myKeys, table);
+            article.get(args, callback, myKeys);
         }
     }
 
     this.bestSellers = {
         get : function (args, callback) {
-            best_sellers.get(args, callback, myKeys, table);
+            best_sellers.get(args, callback, myKeys);
         },
         search : function (args, callback) {
-            best_sellers.search(args, callback, myKeys, table);
+            best_sellers.search(args, callback, myKeys);
         },
         history : function (args, callback) {
-            best_sellers.history(args, callback, myKeys, table);
+            best_sellers.history(args, callback, myKeys);
         },
         overview : function (args, callback) {
-            best_sellers.overview(args, callback, myKeys, table);
+            best_sellers.overview(args, callback, myKeys);
         },
         names : function (args, callback) {
-            best_sellers.names(args, callback, myKeys, table);
+            best_sellers.names(args, callback, myKeys);
         }
     }
 
     this.community = {
         recent : function (args, callback) {
-            community.recent(args, callback, myKeys, table);
+            community.recent(args, callback, myKeys);
         },
         random : function (args, callback) {
-            community.random(args, callback, myKeys, table);
+            community.random(args, callback, myKeys);
         },
         byDate : function (args, callback) {
-            community.byDate(args, callback, myKeys, table);
+            community.byDate(args, callback, myKeys);
         },
         byUser : function (args, callback) {
-            community.byUser(args, callback, myKeys, table);
+            community.byUser(args, callback, myKeys);
         },
         byURL : function (args, callback) {
-            community.byURL(args, callback, myKeys, table);
+            community.byURL(args, callback, myKeys);
         }
     }
 
