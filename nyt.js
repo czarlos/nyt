@@ -7,6 +7,7 @@ var reql = require('lib/request_lib');
 var timestags = require('services/timestags');
 var newswire = require('services/newswire');
 var most_popular = require('services/most_popular');
+var movie_reviews = require('services/movie_reviews');
 var geo = require('services/geo');
 var event_listings = require('services/event_listings');
 var districts = require('services/districts');
@@ -14,6 +15,7 @@ var community = require('services/community');
 var best_sellers = require('services/best_sellers');
 var article = require('services/article');
 var semantic = require('services/semantic');
+var real_estate = require('services/real_estate');
 
 function nyt (keys) {
     var myKeys = keys;
@@ -90,12 +92,42 @@ function nyt (keys) {
         }
     }
 
+    this.movieReviews = {
+        byKeyword : function (args, callback) {
+            movie_reviews.byKeyword(args, callback, myKeys);
+        },
+        criticsPicks : function (args, callback) {
+            movie_reviews.criticsPicks(args, callback, myKeys);
+        },
+        byReviewer : function (args, callback) {
+            movie_reviews.byReviewer(args, callback, myKeys);
+        },
+        reviewerDetails : function (args, callback) {
+            movie_reviews.reviewerDetails(args, callback, myKeys);
+        }
+    }
+
     this.newswire = {
         recent : function (args, callback) {
             newswire.recent(args, callback, myKeys);
         },
         specific : function (args, callback) {
             newswire.specific(args, callback, myKeys);
+        }
+    }
+
+    this.realEstate = {
+        listingPercentiles : function (args, callback) {
+            real_estate.listingPercentiles(args, callback, myKeys);
+        },
+        listingCounts : function (args, callback) {
+            real_estate.listingCounts(args, callback, myKeys);
+        },
+        salesPercentiles : function (args, callback) {
+            real_estate.salesPercentiles(args, callback, myKeys);
+        },
+        salesCounts : function (args, callback) {
+            real_estate.salesCounts(args, callback, myKeys);
         }
     }
 

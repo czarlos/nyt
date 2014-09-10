@@ -9,12 +9,17 @@ New York Times API Wrapper
 - Event Listings
 - Geographic
 - Most Popular
+- Movie Reviews
+- Newswire
+- Real Estate
 - Semantic
 - TimesTags
-- Newswire
 
 ##Awaiting Implementation##
 - Campaign Finance
 - Congress
+
+##Untested##
 - Movie Reviews
 - Real Estate
+- TimesTags
