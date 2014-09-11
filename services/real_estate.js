@@ -4,26 +4,28 @@ var reql = require('../lib/request_lib');
 var base = '/svc/real-estate/v2';
 var keyName = 'real-estate';
 
-var listingsPercentile = function (args, callback, myKeys) {
+function realEstate (keys) {
+	this.myKeys = keys;
+}
+
+realEstate.prototype.listingsPercentile = function (args, callback) {
     var specific = reql.buildPath('listings', 'percentile', args['percentile-value']);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-var listingCounts = function (args, callback, myKeys) {
+realEstate.prototype.listingCounts = function (args, callback) {
     var specific = reql.buildPath('listing', 'count');
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-var salesPercentile = function (args, callback, myKeys) {
+realEstate.prototype.salesPercentile = function (args, callback) {
     var specific = reql.buildPath('sales', 'percentile', args['percentile-value']);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-var salesCounts = function (args, callback, myKeys) {
+realEstate.prototype.salesCounts = function (args, callback) {
     var specific = reql.buildPath('sales', 'count');
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-exports.listingsPercentile = listingsPercentile;
-exports.listingCounts = listingCounts;
-exports.salesPercentile = salesPercentile;
-exports.salesCounts = salesCounts;
+module.exports = realEstate;

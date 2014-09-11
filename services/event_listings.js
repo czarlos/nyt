@@ -4,9 +4,13 @@ var reql = require('../lib/request_lib');
 var base = '/svc/events/v2/listings';
 var keyName = 'event-listings';
 
-var search = function (args, callback, myKeys, t) {
-    var specific = '';
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+function eventListings (keys) {
+	this.myKeys = keys;
 }
 
-exports.search = search;
+eventListings.prototype.search = function (args, callback) {
+    var specific = '';
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
+}
+
+module.exports = eventListings;

@@ -4,27 +4,28 @@ var reql = require('../lib/request_lib');
 var base = '/svc/movies/v2/reviews';
 var keyName = 'movie-reviews';
 
-var byKeyword = function (args, callback, myKeys) {
-    var specific = reql.buildPath('search');
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
-};
-
-var criticsPicks = function (args, callback, myKeys) {
-    var specific = reql.buildPath(args['resource-type']);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
-};
-
-var byReviewer = function (args, callback, myKeys) {
-    var specific = reql.buildPath(args['reviewer-name']);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
-};
-
-var reviewerDetails = function (args, callback, myKeys) {
-    var specific = reql.buildPath(args['reviewer-name']);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName)
+function movieReviews (keys) {
+	this.myKeys = keys;
 }
 
-exports.byKeyword = byKeyword;
-exports.criticsPicks = criticsPicks;
-exports.byReviewer = byReviewer;
-exports.reviewerDetails = reviewerDetails;
+movieReviews.prototype.byKeyword = function (args, callback) {
+    var specific = reql.buildPath('search');
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
+};
+
+movieReviews.prototype.criticsPicks = function (args, callback) {
+    var specific = reql.buildPath(args['resource-type']);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
+};
+
+movieReviews.prototype.byReviewer = function (args, callback) {
+    var specific = reql.buildPath(args['reviewer-name']);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
+};
+
+movieReviews.prototype.reviewerDetails = function (args, callback) {
+    var specific = reql.buildPath(args['reviewer-name']);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName)
+}
+
+module.exports = movieReviews;

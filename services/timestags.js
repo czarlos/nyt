@@ -1,7 +1,11 @@
 var response_lib = require('../lib/response_lib');
 var reql = require('../lib/request_lib');
 
-var search = function (args, callback, myKeys) {
+function timestags (keys) {
+	this.myKeys = keys;
+}
+
+timestags.prototype.search = function (args, callback, myKeys) {
 	var callbackReturn = response_lib.checkCallback(args, callback);
 	args = callbackReturn.args;
 	callback = callbackReturn.callback;
@@ -13,4 +17,4 @@ var search = function (args, callback, myKeys) {
 	reql.get(path, callback, args);
 }
 
-exports.search = search;
+module.exports = timestags;

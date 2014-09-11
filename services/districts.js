@@ -4,9 +4,13 @@ var reql = require('../lib/request_lib');
 var base = '/svc/politics/v2/districts';
 var keyName = 'districts';
 
-var search = function (args, callback, myKeys, t) {
+function districts (keys) {
+	this.myKeys = keys;
+}
+
+districts.prototype.search = function (args, callback) {
     var specific = '';
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-exports.search = search;
+module.exports = districts;

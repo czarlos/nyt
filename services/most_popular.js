@@ -4,25 +4,27 @@ var reql = require('../lib/request_lib');
 var base = '/svc/mostpopular/v2/';
 var keyName = 'most-popular';
 
+function mostPopular (keys) {
+	this.myKeys = keys;
+}
+
 var popularityString = function (method, args) {
     return reql.buildPath(method, args['section'], args['time-period']);
 };
 
-var emailed = function (args, callback, myKeys, t) {
+mostPopular.prototype.emailed = function (args, callback) {
     var specific = popularityString('mostemailed', args);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 
 };
-var shared = function (args, callback, myKeys, t) {
+mostPopular.prototype.shared = function (args, callback) {
     var specific = popularityString('mostshared', args);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 
 };
-var viewed = function (args, callback, myKeys, t) {
+mostPopular.prototype.viewed = function (args, callback) {
     var specific = popularityString('mostviewed', args);
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-exports.emailed = emailed;
-exports.shared = shared;
-exports.viewed = viewed;
+module.exports = mostPopular;

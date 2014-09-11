@@ -4,7 +4,7 @@ var reql = require('../lib/request_lib');
 var base = '/svc/search/v2/articlesearch';
 var keyName = 'article-search';
 
-function article(keys) {
+function article (keys) {
 	this.myKeys = keys;
 }
 
