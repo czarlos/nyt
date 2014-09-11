@@ -5,7 +5,6 @@ var base = '/svc/books/v2/lists';
 var keyName = 'best-sellers';
 
 var get = function (args, callback, myKeys) {
-    //var date = response_lib.checkFieldAndRemove('YYYY-MM-DD', '', args);
     var date = response_lib.checkField(args['YYYY-MM-DD'], '');
     var specific = reql.buildPath(date, args['list-name']);
     reql.createRequest(args, callback, myKeys, base, specific, keyName);

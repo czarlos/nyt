@@ -1,30 +1,35 @@
 var querystring = require('querystring');
 var http = require('http');
 
-var response_lib = require('lib/response_lib');
-var reql = require('lib/request_lib');
+var response_lib = require('./lib/response_lib');
+var reql = require('./lib/request_lib');
 
-var timestags = require('services/timestags');
-var newswire = require('services/newswire');
-var most_popular = require('services/most_popular');
-var movie_reviews = require('services/movie_reviews');
-var geo = require('services/geo');
-var event_listings = require('services/event_listings');
-var districts = require('services/districts');
-var community = require('services/community');
-var best_sellers = require('services/best_sellers');
-var article = require('services/article');
-var semantic = require('services/semantic');
-var real_estate = require('services/real_estate');
+var timestags = require('./services/timestags');
+var newswire = require('./services/newswire');
+var most_popular = require('./services/most_popular');
+var movie_reviews = require('./services/movie_reviews');
+var geo = require('./services/geo');
+var event_listings = require('./services/event_listings');
+var districts = require('./services/districts');
+var community = require('./services/community');
+var best_sellers = require('./services/best_sellers');
+var article = require('./services/article');
+var semantic = require('./services/semantic');
+var real_estate = require('./services/real_estate');
+var congress = require('./services/congress');
+
 
 function nyt (keys) {
     var myKeys = keys;
 
-    this.article = {
-        get : function (args, callback) {
-            article.get(args, callback, myKeys);
-        }
-    }
+    // this.article = {
+    //     get : function (args, callback) {
+    //         article.get(args, callback, myKeys);
+    //     }
+    // }
+    this.article = new article(myKeys);
+
+    this.congress = new congress(myKeys);
 
     this.bestSellers = {
         get : function (args, callback) {

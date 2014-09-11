@@ -5,6 +5,7 @@ New York Times API Wrapper
 - Article Search
 - Best Sellers
 - Community
+- Congress
 - Districts
 - Event Listings
 - Geographic
@@ -17,9 +18,9 @@ New York Times API Wrapper
 
 ##Awaiting Implementation##
 - Campaign Finance
-- Congress
 
 ##Untested##
+- Congress
 - Movie Reviews
 - Real Estate
 - TimesTags

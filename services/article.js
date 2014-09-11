@@ -4,9 +4,13 @@ var reql = require('../lib/request_lib');
 var base = '/svc/search/v2/articlesearch';
 var keyName = 'article-search';
 
-var get = function (args, callback, myKeys) {
-    var specific = '';
-    reql.createRequest(args, callback, myKeys, base, specific, keyName);
+function article(keys) {
+	this.myKeys = keys;
 }
 
-exports.get = get;
+article.prototype.get = function (args, callback) {
+    var specific = '';
+    reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
+};
+
+module.exports = article;
