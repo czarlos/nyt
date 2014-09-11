@@ -1,9 +1,3 @@
-var querystring = require('querystring');
-var http = require('http');
-
-var response_lib = require('./lib/response_lib');
-var reql = require('./lib/request_lib');
-
 var timestags = require('./services/timestags');
 var newswire = require('./services/newswire');
 var most_popular = require('./services/most_popular');
