@@ -4,6 +4,7 @@ New York Times API Wrapper
 ##Working Components##
 - Article Search
 - Best Sellers
+-Campaign Finance
 - Community
 - Congress
 - Districts
@@ -16,10 +17,8 @@ New York Times API Wrapper
 - Semantic
 - TimesTags
 
-##Awaiting Implementation##
-- Campaign Finance
-
 ##Untested##
+- Campaign Finance
 - Congress
 - Movie Reviews
 - Real Estate
