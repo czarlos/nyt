@@ -10,7 +10,13 @@ var best_sellers = require('./services/best_sellers');
 var article = require('./services/article');
 var semantic = require('./services/semantic');
 var real_estate = require('./services/real_estate');
-var congress = require('./services/congress');
+//var congress = require('./services/congress');
+
+var bills = require('./services/congress/bills');
+var members = require('./services/congress/members');
+var nominees = require('./services/congress/nominees');
+var other = require('./services/congress/other');
+var votes = require('./services/congress/votes');
 
 
 function nyt (keys) {
@@ -18,7 +24,15 @@ function nyt (keys) {
 
     this.article = new article (myKeys);
 
-    this.congress = new congress (myKeys);
+    this.congress = {
+        bills : new bills (myKeys),
+        members : new members (myKeys),
+        nominees : new nominees (myKeys),
+        other : new other (myKeys),
+        votes : new votes (myKeys)
+    };
+
+    //new congress (myKeys);
 
     this.bestSellers = new best_sellers (myKeys);
 
