@@ -10,40 +10,40 @@ function committees (keys) {
 
 /*Committees*/
 
-committees.prototype.committeeSearch = function (args, callback) {
+committees.prototype.search = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', 'search');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-committees.prototype.committeeDetails = function (args, callback) {
+committees.prototype.details = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-committees.prototype.newCommittees = function (args, callback) {
+committees.prototype.new = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', 'new');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-committees.prototype.committeeContributions = function (args, callback) {
+committees.prototype.contributions = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     'contributions');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-committees.prototype.committeeContributionsToACandidate = function (args, callback) {
+committees.prototype.contributionsToACandidate = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     'contributions', args['candidate-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-committees.prototype.committeeFilings = function (args, callback) {
+committees.prototype.filings = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     'filings');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-committees.prototype.leadershipCommittees = function (args, callback) {
+committees.prototype.leadership = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', 'leadership');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }

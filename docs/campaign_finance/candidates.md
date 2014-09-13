@@ -56,7 +56,7 @@ nyt.campaignFinance.candidates.leadersByCategory({‘cycle’:’2000-present’
 
 - cycle
 - state
-- district Tthe NYT API docs claim this is not required)
+- district (The NYT API docs claim this is not required)
 
 ##### *Usage*
 ```javascript
