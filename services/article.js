@@ -8,7 +8,7 @@ function article (keys) {
 	this.myKeys = keys;
 }
 
-article.prototype.get = function (args, callback) {
+article.prototype.search = function (args, callback) {
     var specific = '';
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
