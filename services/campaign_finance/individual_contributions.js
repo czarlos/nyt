@@ -10,19 +10,19 @@ function individualContributions (keys) {
 
 /*Individual Contributions*/
 
-individualContributions.prototype.contributionsByPresidentialFiling = function (args, callback) {
+individualContributions.prototype.byPresidentialFiling = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'contributions', 'filing',
                                     args['filing-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-individualContributions.prototype.contributionsByCommittee = function (args, callback) {
+individualContributions.prototype.byCommittee = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'contributions', 'committee',
                                     args['FEC-ID'], 'electioneering_communications');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-individualContributions.prototype.contributionsByCandidate = function (args, callback) {
+individualContributions.prototype.byCandidate = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'contributions', 'candidate',
                                     args['FEC-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
