@@ -10,17 +10,17 @@ function candidates (keys) {
 
 /*Candidates*/
 
-candidates.prototype.candidateSearch = function (args, callback) {
+candidates.prototype.search = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'candidates', 'search');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-candidates.prototype.candidateDetails = function (args, callback) {
+candidates.prototype.details = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'candidates', args['FEC-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-candidates.prototype.candidateLeadersByCategory = function (args, callback) {
+candidates.prototype.leadersByCategory = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'candidates', 'leaders',
                                     args['category']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
