@@ -10,24 +10,24 @@ function electronicFilings (keys) {
 
 /* Electronic Filings */
 
-electronicFilings.prototype.presidentialCandidateTotalsElectronic = function (args, callback) {
+electronicFilings.prototype.totals = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'filings', args['year'],
                                     args['month'], args['day']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-electronicFilings.prototype.electronicFilingFormTypes = function (args, callback) {
+electronicFilings.prototype.formTypes = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'filings', 'types');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-electronicFilings.prototype.electronicFilingsByType = function (args, callback) {
+electronicFilings.prototype.byType = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'filings', 'types',
                                     args['form-type-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-electronicFilings.prototype.presidentialFilingSummary = function (args, callback) {
+electronicFilings.prototype.filingSummary = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'filings', args['filing-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
