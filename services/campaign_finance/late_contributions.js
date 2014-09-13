@@ -10,29 +10,29 @@ function lateContributions (keys) {
 
 /*Late Contributions To Candidates*/
 
-lateContributions.prototype.todaysLateContributions = function (args, callback) {
+lateContributions.prototype.today = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'contributions', '48hour');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-lateContributions.prototype.lateContributionsToACandidate = function (args, callback) {
+lateContributions.prototype.toACandidate = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'candidates', args['FEC-ID'],
                                     '48hour');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-lateContributions.prototype.lateContributionsToACommittee = function (args, callback) {
+lateContributions.prototype.toACommittee = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     '48hour');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-lateContributions.prototype.presidentialIndependentExpendituresLate = function (args, callback) {
+lateContributions.prototype.presidential = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'president', 'independent_expenditures');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-lateContributions.prototype.lateContributionsByDate = function (args, callback) {
+lateContributions.prototype.byDate = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'contributions', '48hour',
                                     args['year'], args['month'], args['date']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
