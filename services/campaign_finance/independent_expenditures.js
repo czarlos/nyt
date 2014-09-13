@@ -10,35 +10,35 @@ function independentExpenditures (keys) {
 
 /*Independent Expenditures*/
 
-independentExpenditures.prototype.recentIndependentExpenditures = function (args, callback) {
+independentExpenditures.prototype.recent = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'independent_expenditures');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-independentExpenditures.prototype.independentExpendituresByDate = function (args, callback) {
+independentExpenditures.prototype.byDate = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'independent_expenditures',
                                     args['year'], args['month'], args['day']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-independentExpenditures.prototype.committeeIndependentExpenditures = function (args, callback) {
+independentExpenditures.prototype.committee = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     'independent_expenditures');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-independentExpenditures.prototype.independentExpendituresThatSupportOrOppose = function (args, callback) {
+independentExpenditures.prototype.supportOrOppose = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'candidates', args['FEC-ID'],
                                     'independent_expenditures');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-independentExpenditures.prototype.presidentialIndependentExpenditures = function (args, callback) {
+independentExpenditures.prototype.presidential = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'president', 'independent_expenditures');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-independentExpenditures.prototype.independentExpenditureOnlyCommittees = function (args, callback) {
+independentExpenditures.prototype.onlyCommittees = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', 'superpacs');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
@@ -49,7 +49,7 @@ independentExpenditures.prototype.raceTotals = function (args, callback) {
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-independentExpenditures.prototype.raceTotalForACommittee = function (args, callback) {
+independentExpenditures.prototype.committeeRaceTotal = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     'independent_expenditures', 'races');
 }
