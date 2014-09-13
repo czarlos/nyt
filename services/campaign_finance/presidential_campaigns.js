@@ -10,18 +10,18 @@ function lateContributions (keys) {
 
 /*Presidential Campaigns*/
 
-lateContributions.prototype.presidentialCandidateTotals = function (args, callback) {
+lateContributions.prototype.totals = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'president', 'totals');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-lateContributions.prototype.candidateDetails = function (args, callback) {
+lateContributions.prototype.details = function (args, callback) {
     var specific  = reql.buildPath(args['cycle'], 'president', 'candidates',
                                   args['Name|CommitteeID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 }
 
-lateContributions.prototype.presidentialStateAndZipTools = function (args, callback) {
+lateContributions.prototype.stateAndZipTools = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'president', args['resource-type'],
                                  args['location']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
