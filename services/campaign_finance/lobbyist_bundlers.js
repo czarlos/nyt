@@ -10,7 +10,7 @@ function lobbyistBundlers (keys) {
 
 /*Lobbyist Bundlers*/
 
-lobbyistBundlers.prototype.lobbyistBundlersToACommittee = function (args, callback) {
+lobbyistBundlers.prototype.toACommittee = function (args, callback) {
     var specific = reql.buildPath(args['cycle'], 'committees', args['FEC-ID'],
                                     'lobbyist_bundlers');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
