@@ -2,6 +2,8 @@ New York Times API Wrapper
 ==========================
 A New York Times API wrapper for Node.js
 
+Check out the [online docs](http://czarlos.github.io/nyt/) made with DAUX.IO
+
 ### Motivation
 I wasn't able to find a wrapper for the New York Times
 developer API, and I thought it would be great if one existed,
