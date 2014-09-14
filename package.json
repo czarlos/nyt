@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/czarlos/nyt/issues"
   },
-  "homepage": "https://github.com/czarlos/nyt"
+  "homepage": "https://github.com/czarlos/nyt",
+  "dependencies": {
+      "querystring": "0.2.0"
+  }
 }
