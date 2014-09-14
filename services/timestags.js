@@ -12,9 +12,9 @@ timestags.prototype.search = function (args, callback, myKeys) {
 
 	var query = response_lib.checkQuery(args);
 	var path = '/'.concat('svc/', 'suggest/v1/timestags?',
-				query, 'api-key=', myKeys['timestags']);
-    console.log(path);
+				query, 'api-key=', this.myKeys['timestags']);
 	reql.get(path, callback, args);
-}
+   console.log("THIS");
+};
 
 module.exports = timestags;

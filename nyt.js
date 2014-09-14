@@ -24,6 +24,7 @@ var critics = require('./services/movie_reviews/critics');
 var listings = require('./services/real_estate/listings');
 var sales = require('./services/real_estate/sales');
 
+
 function nyt (keys) {
     var myKeys = keys;
 
@@ -37,8 +38,6 @@ function nyt (keys) {
         votes : new votes (myKeys)
     };
 
-    //new congress (myKeys);
-
     this.bestSellers = new best_sellers (myKeys);
 
     this.community = new community (myKeys);
@@ -50,8 +49,6 @@ function nyt (keys) {
     this.geo = new geo (myKeys);
 
     this.mostPopular = new most_popular (myKeys);
-
-    this.movieReviews = new movie_reviews (myKeys);
 
     this.movieReviews = {
         reviews : new reviews (myKeys),
