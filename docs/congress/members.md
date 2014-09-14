@@ -14,7 +14,7 @@ nyt.congress.members.currentMembersList(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.congress.members.currentMembersList({‘congress-number’:’1’, 
+nyt.congress.members.currentMembersList({‘congress-number’:’105’, 
 ‘chamber’:’house’}, console.log)
 ```
 
@@ -32,7 +32,7 @@ nyt.congress.members.memberList(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.congress.members.membersList({‘congress-number’:’1’, 
+nyt.congress.members.membersList({‘congress-number’:’105’, 
 ‘chamber’:’house’}, console.log)
 ```
 
@@ -99,7 +99,7 @@ nyt.congress.members.leavingOffice(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.congress.members.leavingOffice({‘chamber’:’house’, ‘congress-number’:’1’}, console.log)
+nyt.congress.members.leavingOffice({‘chamber’:’house’, ‘congress-number’:’105’}, console.log)
 ```
 
 ###Members Vote Positions
@@ -134,7 +134,7 @@ nyt.congress.members.voteComparison(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.congress.members.voteComparison({‘first-member-ID’:’<id>’, ‘second-member-ID’:’<id>’, ‘congress-number’:’1’, ‘chamber’:’house’}, console.log)
+nyt.congress.members.voteComparison({‘first-member-ID’:’<id>’, ‘second-member-ID’:’<id>’, ‘congress-number’:’105’, ‘chamber’:’house’}, console.log)
 ```
 
 ###Bills Cosponsored by a Member
@@ -170,7 +170,7 @@ nyt.congress.members.sponsorshipComparison(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.congress.members.sponsorshipComparison({‘first-member-ID’:’<id>’, ‘second-member-ID’:’<id>’, ‘congress-number’:’1’, ‘chamber’:’house’}, console.log)
+nyt.congress.members.sponsorshipComparison({‘first-member-ID’:’<id>’, ‘second-member-ID’:’<id>’, ‘congress-number’:’105’, ‘chamber’:’house’}, console.log)
 ```
 
 ###Members Floor Appearances

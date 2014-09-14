@@ -10,20 +10,20 @@ function nominees (keys) {
 
 /*Nominees*/
 
-nominees.prototype.nomineeLists = function (args, callback) {
-    var specific = reql.buildPath(args['congress-number'], 'nominees', 
+nominees.prototype.lists = function (args, callback) {
+    var specific = reql.buildPath(args['congress-number'], 'nominees',
                                         args['nomination-category']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-nominees.prototype.nomineeDetails = function (args, callback) {
-    var specific = reql.buildPath(args['congress-number'], 'nominees', 
+nominees.prototype.details = function (args, callback) {
+    var specific = reql.buildPath(args['congress-number'], 'nominees',
                                     args['nominee-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-nominees.prototype.nomineesByState = function (args, callback) {
-    var specific = reql.buildPath(args['congress-number'], 'nominees', 'state', 
+nominees.prototype.byState = function (args, callback) {
+    var specific = reql.buildPath(args['congress-number'], 'nominees', 'state',
                                     args['ST']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };

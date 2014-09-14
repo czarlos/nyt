@@ -10,18 +10,18 @@ function other (keys) {
 
 /*Other*/
 
-other.prototype.nomineeLists = function (args, callback) {
+other.prototype.statePartyCounts = function (args, callback) {
     var specific = reql.buildPath('states', 'members', 'party');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-other.prototype.nomineeDetails = function (args, callback) {
-    var specific = reql.buildPath(args['chamber'], 'committees', 
+other.prototype.committees = function (args, callback) {
+    var specific = reql.buildPath(args['chamber'], 'committees',
                                     args['committee-ID']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-other.prototype.nomineesByState = function (args, callback) {
+other.prototype.chamberSchedule = function (args, callback) {
     var specific = reql.buildPath(args['chamber'], 'schedule');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };

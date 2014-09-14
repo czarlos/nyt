@@ -10,31 +10,31 @@ function votes (keys) {
 
 /*Votes*/
 
-votes.prototype.rollCallVotes = function (args, callback) {
-    var specific = reql.buildPath(args['congress-number'], args['chamber'], 
-                                    'sessions', args['sessions-number'], 
+votes.prototype.rollCall = function (args, callback) {
+    var specific = reql.buildPath(args['congress-number'], args['chamber'],
+                                    'sessions', args['sessions-number'],
                                     'votes', 'roll-call-number');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-votes.prototype.votesByType = function (args, callback) {
-    var specific = reql.buildPath(args['congress-number'], args['chamber'], 
+votes.prototype.byType = function (args, callback) {
+    var specific = reql.buildPath(args['congress-number'], args['chamber'],
                                     'votes', args['vote-type']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-votes.prototype.votesByDate = function (args, callback) {
+votes.prototype.byDate = function (args, callback) {
     var specific = reql.buildPath(args['chamber'], 'votes', args['year'], args['month']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-votes.prototype.votesByDateRange = function (args, callback) {
-    var specific = reql.buildPath(args['chamber'], 'votes', args['start-date'], 
+votes.prototype.byDateRange = function (args, callback) {
+    var specific = reql.buildPath(args['chamber'], 'votes', args['start-date'],
                                     args['end-date']);
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
 
-votes.prototype.nominationVotes = function (args, callback) {
+votes.prototype.nomination = function (args, callback) {
     var specific = reql.buildPath(args['congress-number'], 'nominations');
     reql.createRequest(args, callback, this.myKeys, base, specific, keyName);
 };
