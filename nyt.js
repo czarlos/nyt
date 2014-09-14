@@ -1,7 +1,6 @@
 var timestags = require('./services/timestags');
 var newswire = require('./services/newswire');
 var most_popular = require('./services/most_popular');
-var movie_reviews = require('./services/movie_reviews');
 var geo = require('./services/geo');
 var event_listings = require('./services/event_listings');
 var districts = require('./services/districts');
@@ -9,15 +8,21 @@ var community = require('./services/community');
 var best_sellers = require('./services/best_sellers');
 var article = require('./services/article');
 var semantic = require('./services/semantic');
-var real_estate = require('./services/real_estate');
-//var congress = require('./services/congress');
 
+/* Congress */
 var bills = require('./services/congress/bills');
 var members = require('./services/congress/members');
 var nominees = require('./services/congress/nominees');
 var other = require('./services/congress/other');
 var votes = require('./services/congress/votes');
 
+/* Movie Reviews */
+var reviews = require('./services/movie_reviews/reviews');
+var critics = require('./services/movie_reviews/critics');
+
+/* Real Estate */
+var listings = require('./services/real_estate/listings');
+var sales = require('./services/real_estate/sales');
 
 function nyt (keys) {
     var myKeys = keys;
@@ -48,9 +53,17 @@ function nyt (keys) {
 
     this.movieReviews = new movie_reviews (myKeys);
 
+    this.movieReviews = {
+        reviews : new reviews (myKeys),
+        critics : new critics (myKeys)
+    }
+
     this.newswire = new newswire (myKeys);
 
-    this.realEstate = new real_estate (myKeys);
+    this.realEstate = {
+        listings : new listings (myKeys),
+        sales : new sales (myKeys)
+    }
 
     this.semantic = new semantic (myKeys);
 
