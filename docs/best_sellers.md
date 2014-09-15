@@ -12,7 +12,7 @@ nyt.bestSellers.get(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.routes.get({‘list-name’:’hardcover-fiction’}, console.log)
+nyt.bestSellers.get({‘list-name’:’hardcover-fiction’}, console.log)
 ```
 
 ###Search Best Seller Lists
@@ -28,7 +28,7 @@ nyt.bestSellers.search(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.routes.search({‘list-name’:’hardcover-fiction’}, console.log)
+nyt.bestSellers.search({‘list-name’:’hardcover-fiction’}, console.log)
 ```
 
 ###Best Seller History
@@ -50,7 +50,7 @@ nyt.bestSellers.get(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.routes.history({‘author’:’rowling’}, console.log)
+nyt.bestSellers.history({‘author’:’rowling’}, console.log)
 ```
 
 ###Lists Overview
@@ -66,7 +66,7 @@ nyt.bestSellers.overview(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.routes.overview({}, console.log)
+nyt.bestSellers.overview({}, console.log)
 ```
 
 ###List Names
@@ -82,5 +82,5 @@ nyt.bestSellers.names(args, callback)
 
 ##### *Example*
 ```javascript
-nyt.routes.search({}, console.log)
+nyt.bestSellers.search({}, console.log)
 ```
