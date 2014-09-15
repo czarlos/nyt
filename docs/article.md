@@ -12,5 +12,5 @@ nyt.article.search(args -g, callback)
 
 ##### *Example*
 ```javascript
-nyt.routes.search({‘q’:’bill gates’}, console.log)
+nyt.article.search({‘q’:’bill gates’}, console.log)
 ```
