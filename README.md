@@ -34,7 +34,19 @@ with its name as seen in this next snippet:
 ```javascript
 var keys = {
             'article-search':'sample-key',
-            'congress':'sample-key'
+            'best-sellers':'sample-key',
+            'campaign-finance':'sample-key',
+            'community':'sample-key',
+            'congress':'sample-key',
+            'districts':'sample-key',
+            'event-listings':'sample-key',
+            'geo':'sample-key',
+            'most-popular':'sample-key',
+            'movie-reviews':'sample-key',
+            'newswire':'sample-key',
+            'real-estate':'sample-key',
+            'semantic':'sample-key',
+            'timestags':'sample-key',
             }
 ```
 
