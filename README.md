@@ -63,7 +63,7 @@ Calls are made via the specific API and the sub-API that we wish
 to access. Therefore calls are structured as such:
 
 ```javascript
-nyt.api.(sub-api).function(args, callback)
+nyt.api.<sub-api>.function(args, callback)
 ```
 Some of the API's have sub-APIs, and some don't.
 Here is an example of accessing an API that *doesn't* have a
